@@ -74,13 +74,20 @@ def main():
     model.fit(X_train, y_train)
     
     ## 預測
-    y_pred = model.predict(X_test)
+    y_train_pred = model.predict(X_train)
+    y_test_pred = model.predict(X_test)
     
     ## 評估
-    mse = mean_squared_error(y_test, y_pred)
-    r2 = r2_score(y_test, y_pred)
-    print(f"均方誤差 (MSE): {mse:.4f}")
-    print(f"決定係數 R²: {r2:.4f}")
+    y_train_pred = model.predict(X_train)
+    train_mse = mean_squared_error(y_train, y_train_pred)
+    train_r2 = r2_score(y_train, y_train_pred)
+    print(f"train data 均方誤差 (MSE): {train_mse:.4f}")
+    print(f"train data 決定係數 R²: {train_r2:.4f}")
+    
+    test_mse = mean_squared_error(y_test, y_test_pred)
+    test_r2 = r2_score(y_test, y_test_pred)
+    print(f"test data 均方誤差 (MSE): {test_mse:.4f}")
+    print(f"test data 決定係數 R²: {test_r2:.4f}")
 
 if __name__ == '__main__':
     main()
