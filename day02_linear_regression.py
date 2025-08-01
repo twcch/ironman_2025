@@ -1,6 +1,5 @@
 import requests
 import pandas as pd
-import matplotlib.pyplot as plt
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
@@ -85,26 +84,6 @@ def main():
     test_r2 = r2_score(y_test, y_test_pred)
     print(f"test data 均方誤差 (MSE): {test_mse:.4f}")
     print(f"test data 決定係數 R²: {test_r2:.4f}")
-    
-    ## 回歸係數檢視
-    lr_model = model.named_steps["lr"]
-    coefficients = pd.DataFrame({
-        "Feature": X.columns,
-        "Coefficient": lr_model.coef_
-    }).sort_values(by="Coefficient", key=abs, ascending=False)
-    
-    print("各特徵回歸係數 (依影響力排序):")
-    print(coefficients)
-    
-    ## 殘差分析
-    residuals = y_test - y_test_pred
-
-    plt.scatter(y_test_pred, residuals, alpha=0.6)
-    plt.axhline(0, color='red', linestyle='--')
-    plt.xlabel("Predicted MEDV")
-    plt.ylabel("Residuals")
-    plt.title("Residual Plot")
-    plt.show()
 
 if __name__ == '__main__':
     main()
