@@ -77,7 +77,6 @@ def main():
     y_test_pred = model.predict(X_test)
     
     ## 評估
-    y_train_pred = model.predict(X_train)
     train_mse = mean_squared_error(y_train, y_train_pred)
     train_r2 = r2_score(y_train, y_train_pred)
     print(f"train data 均方誤差 (MSE): {train_mse:.4f}")
